@@ -1,35 +1,18 @@
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.HashSet;
 
-public class ShoppingBasket {
+public interface ShoppingBasket extends Remote {
 
-    private String name;
-    private HashSet<ShoppingItem> items;
 
-    public ShoppingBasket(String name, HashSet<ShoppingItem> items) {
-        this.name = name;
-        this.items = items;
-        items = new HashSet<ShoppingItem>();
-    }
+    ShoppingItem searchItem(String basketName, String itemName) throws RemoteException;
 
-    public ShoppingItem searchItem(String itemName) {
-        for (ShoppingItem item : items) {
-            if (item.getName().equals(itemName)) {
-                return item;
-            }
-        }
-        return null;
-    }
+    public void addItemToBasket(String name, int price, int quantity) throws RemoteException;
 
-    public void addItemToBasket(String name, int price, int quantity) {
-        items.add(new ShoppingItem(name, price, quantity));
-    }
+    public HashSet<ShoppingItem> getItemsFromBasket(String basketName) throws RemoteException;
 
-    public String getName() {
-        return name;
-    }
+    public String getShoppingBasketName() throws RemoteException;
 
-    public HashSet<ShoppingItem> getItems() {
-        return items;
-    }
+    public void print() throws RemoteException;
 
 }

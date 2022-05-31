@@ -1,5 +1,6 @@
 import java.rmi.Naming;
-import java.util.Date;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
 public class Client {
 
@@ -10,9 +11,13 @@ public class Client {
         }
 
         try {
-            Server server = (Server) Naming.lookup("rmi://" + args[0] + "/Server");
-            Date when = server.getDate();
-            System.out.println("Datum: " + when);
+            //ServerImpl server = (ServerImpl) Naming.lookup("Server");
+
+            ShoppingBasket shoppingBasket1 = (ShoppingBasket) Naming.lookup("Basket1");
+
+            shoppingBasket1.addItemToBasket("freezer", 550, 30);
+            shoppingBasket1.print();
+
         } catch (Exception e) {
             System.out.println("Client: " + e.getMessage());
             e.printStackTrace();

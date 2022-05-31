@@ -1,28 +1,13 @@
-public class ShoppingItem {
+import java.rmi.RemoteException;
 
-    private String name;
-    private int price;
-    private int quantity;
+public interface ShoppingItem {
 
-    public ShoppingItem(String name, int price, int quantity) {
-        this.name = name;
-        this.price = price;
-        this.quantity = quantity;
-    }
+    public String getName() throws RemoteException;
 
-    public String getName() {
-        return name;
-    }
+    public int getPrice() throws RemoteException;
 
-    public int getPrice() {
-        return price;
-    }
+    public int getQuantity() throws RemoteException;
 
-    public int getQuantity() {
-        return quantity;
-    }
+    public void setQuantity(int quantity) throws RemoteException;
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
 }
